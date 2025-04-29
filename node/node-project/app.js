@@ -100,6 +100,7 @@ app.get('/emp', (req, res) => {
 
 // 부서가 10번인 첫번째 사원
 app.get('/find', (req, res) => {
+  const employee = data.find(emp => emp.deptNo == 10);
   res.send('home hello!')
 })
 
