@@ -108,7 +108,7 @@ app.get('/filter', (req, res) => {
   res.send('home hello!')
 })
 
-// firstname 순 정렬
+// firstname 순 정렬f
 app.get('/sort', (req, res) => {
   res.send('home hello!')
 })
