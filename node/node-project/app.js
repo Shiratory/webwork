@@ -93,23 +93,42 @@ let data = [{
   "email": "hello@mail.com"
 } ];
 
-
+// 전체조회 REST
 app.get('/emp', (req, res) => {
   res.send(data)
 })
 
-// 부서가 10번인 첫번째 사원
+// 사원 하나만 단건조회
+app.get('/emp/:id', (req, res) => {
+  let id = req.params.id
+  let result = data.find(emp => emp.id === id) // (function(emp{if(emp.id == id) return emp}))
+  if(result)
+    res.send(result)
+  else
+  res.send("not found")
+})
+
+// 부서가 10번인 첫번째 사원 find?department_id=10
 app.get('/find', (req, res) => {
-  const employee = data.find(emp => emp.deptNo == 10);
-  res.send('home hello!')
+  let department_id = req.query.department_id
+  let result = data.find(emp => emp.department_id == department_id);
+  if(result)
+    res.send(result)
+  else
+  res.send("not found")
 })
 
-// job_id가 'it'인 사원만
+// job_id가 'it'인 사원만 filter?job_id=it
 app.get('/filter', (req, res) => {
-  res.send('home hello!')
+  let job_id = req.query.job_id
+  let result = data.filter(emp => emp.job_id === job_id);
+  if(result.length > 0)
+    res.send(result)
+  else
+  res.send("not found")
 })
 
-// firstname 순 정렬f
+// firstname 순 정렬
 app.get('/sort', (req, res) => {
   res.send('home hello!')
 })
