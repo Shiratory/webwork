@@ -24,7 +24,7 @@ app.get("/", (req, res) => {
 
 app.use("/customers", require("./routers/customers"))
 app.use("/board", require("./routers/board"))
-app.use("/comment"), require("./routers/comment")
+app.use("/comment", require("./routers/comment"))
 
 app.listen(port, () => {
   console.log(`http://localhost:${port} 서버 실행됨`)
