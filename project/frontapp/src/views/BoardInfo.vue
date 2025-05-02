@@ -29,11 +29,13 @@
           <tr>
             <td colspan="6" class="text-center">
               <button
-                class="btn btn-xs btn-info" >
+                class="btn btn-xs btn-info" 
+                @click="goToUpdateForm(boardInfo.id)">
                 수정
               </button>
               <button
-                class="btn btn-xs btn-info" >
+                class="btn btn-xs btn-info" 
+                @click="deleteForm(boardInfo.id)">
                 삭제
               </button>
              
@@ -44,14 +46,15 @@
     </div>
     <!-- 댓글 -->
     <div class="row">
-
+      <CommentComp :bid="boardInfo.id"/>
     </div>
   </div>
 </template>
 <script>
 import axios from "axios";
-
+import CommentComp from "@/components/CommentComp.vue";
 export default {
+  components:{CommentComp},
   data() {
     return {
       searchNo: "",
@@ -60,15 +63,31 @@ export default {
   },
   created() {
     this.searchNo = this.$route.query.id;
+    console.log(this.searchNo);
     this.getBoardInfo();
   },
   methods: {
     async getBoardInfo() {
       let board = await axios.get(`http://localhost:3000/board/${this.searchNo}`);
-      this.boardInfo = board.data;
+      console.log(board);
+      this.boardInfo = board.data[0];
     },
     goToUpdateForm(id) {
       this.$router.push({ path: "/boardForm", query: { id: id } });
+    },
+    goToListForm(){
+      this.$router.push({path : "/boardList"});
+    },
+    async deleteForm(){
+      if(confirm("게시물을 삭제하시겠습니까?")){
+        let result = await axios.delete(`http://localhost:3000/board/${this.searchNo}`);
+      }
+      if(result.request.status === 200){
+        alert("삭제완료");
+        this.goToListForm();
+      } else {
+        alert("삭제미완료");
+      }
     },
     goToListForm() {
       this.$router.push({ path: "/boardList" });

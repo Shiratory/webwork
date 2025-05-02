@@ -103,6 +103,7 @@ app.route("/emp")
 // router를 이용하여 모듈(파일) 분리해서 리소스별로 라우트 지정
 app.use('/product', require('./routers/product'))
 
+
 app.listen(port, () => {
   console.log(`http://localhost:${port} 서버 실행됨`)
 });

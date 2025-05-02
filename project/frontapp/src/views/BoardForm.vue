@@ -2,26 +2,28 @@
   <div class="container">
     <form @submit.prevent>
       <label for="no">No.</label>
-      <input type="text" id="no"  readonly />
+      <input type="text" id="no" v-model="boardInfo.id" readonly />
 
       <label for="title">제목</label>
-      <input type="text" id="title" />
+      <input type="text" id="title" v-model="boardInfo.title"/>
 
       <label for="writer">작성자</label>
-      <input type="text" id="writer" />
+      <input type="text" id="writer" v-model="boardInfo.writer"/>
 
       <label for="content">내용</label>
       <textarea
         id="content"
         style="height: 200px"
+        v-model="boardInfo.content"
       ></textarea>
 
       <label for="regdate">작성일자</label>
-      <input type="text" readonly />
+      <input type="text" id="regdate" v-bind:value="dateFormat" readonly />
 
       <button
         type="button"
         class="btn btn-xs btn-info"
+        @click="boardUpdate(boardInfo.id)"
       >
         저장
       </button>
@@ -38,12 +40,24 @@ export default{
       boardInfo: {}
     };
   },
+  created(){
+    this.searchNo = this.$route.query.id || "";
+    if(this.searchNo > 0){
+      this.getBoardInfo();
+    }
+  },
+  computed:{
+    dateFormat(){
+      // 날짜 포맷 date -> y m d
+      return this.boardInfo.created_date
+    }
+  },
   methods:{
     async getBoardInfo(){
-      let result = await axios.get(`http://localhost:3000/${this.searchNo}`);
-      this.boardInfo = result.data;
+      let result = await axios.get(`http://localhost:3000/board/${this.searchNo}`);
+      this.boardInfo = result.data[0];
     },
-    async saveBoard(id) {
+    async boardUpdate(id) {
       const url = "http://localhost:3000/board";
       let param = {
         title: this.boardInfo.title,
@@ -52,7 +66,7 @@ export default{
       };
         // 수정
       if (id > 0){
-        const result = await axios.put(`${url}/${no}`, param);
+        const result = await axios.put(`${url}/${id}`, param);
         alert("수정완료");
         this.$router.push({ path: "/boardList" });
 
@@ -93,7 +107,7 @@ button[type="button"] {
 
 /* When moving the mouse over the submit button, add a darker green color */
 button[type="button"]:hover {
-  background-color: #45a049;
+  background-color: #45a086;
 }
 
 /* Add a background color and some padding around the form */
