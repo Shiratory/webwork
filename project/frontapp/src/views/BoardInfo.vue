@@ -68,7 +68,7 @@ export default {
   },
   methods: {
     async getBoardInfo() {
-      let board = await axios.get(`http://localhost:3000/board/${this.searchNo}`);
+      let board = await axios.get(`/api/board/${this.searchNo}`);
       console.log(board);
       this.boardInfo = board.data[0];
     },
@@ -80,7 +80,7 @@ export default {
     },
     async deleteForm(){
       if(confirm("게시물을 삭제하시겠습니까?")){
-        let result = await axios.delete(`http://localhost:3000/board/${this.searchNo}`);
+        let result = await axios.delete(`/api/board/${this.searchNo}`);
       }
       if(result.request.status === 200){
         alert("삭제완료");

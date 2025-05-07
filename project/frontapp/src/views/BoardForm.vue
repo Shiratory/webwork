@@ -54,11 +54,11 @@ export default{
   },
   methods:{
     async getBoardInfo(){
-      let result = await axios.get(`http://localhost:3000/board/${this.searchNo}`);
+      let result = await axios.get(`/api/board/${this.searchNo}`);
       this.boardInfo = result.data[0];
     },
     async boardUpdate(id) {
-      const url = "http://localhost:3000/board";
+      const url = "/api/board";
       let param = {
         title: this.boardInfo.title,
         content: this.boardInfo.content,

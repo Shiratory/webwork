@@ -1,5 +1,5 @@
 <template>
-  <p>댓글리스트~~~~</p>
+  <p>댓글리스트</p>
 
   댓글등록폼 작성자 내용
 </template>
@@ -15,9 +15,9 @@ export default{
     };
   },
   methods: {
-    
+
       getComment(){
-      let comment = axios.get(`http://localhost:3000/comment/1`);  //${this.bid}
+      let comment = axios.get(`/api/comment/1`);  //${this.bid}
       this.comment = comment.data;
       },
     },

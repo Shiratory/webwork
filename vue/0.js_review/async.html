@@ -8,7 +8,7 @@
 <body>
   <script>
     async function getBoard(){
-      fetch("http://localhost:3000/board/1")
+      fetch("/api/board/1")
       res = await res.json();
       console.log("1", res.title);
       console.log("2", "end response")

@@ -2,10 +2,17 @@ import { createRouter, createWebHistory } from "vue-router";
 //import HomeView from "../views/HomeView.vue";
 //import NestedComponent from "@/views/NestedComponent.vue";
 //최초 1번 main에서 실행
+import LoginView from "../../../../project/frontapp/src/views/LoginView.vue";
+import HomeView from "@/views/HomeView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    {
+      path: "/login",
+      name: "login",
+      component: () => import("@/views/LoginView.vue"),
+    },
     {
       path: "/",
       name: "home",

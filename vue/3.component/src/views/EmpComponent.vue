@@ -89,7 +89,7 @@
 
 <script>
 import axios from "axios";
-axios.defaults.baseURL = "http://localhost:3000/emp"; //API 서버 주소
+axios.defaults.baseURL = "/api/emp"; //API 서버 주소
 
 export default {
   data() {
@@ -102,7 +102,7 @@ export default {
   methods: {
     fetchDeptList() {
       axios
-        .get("http://localhost:3000/dept")
+        .get("/api/dept")
         .then((response) => (this.depts = response.data));
     },
     fetchList() {
