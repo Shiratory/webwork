@@ -26,7 +26,7 @@ const router = createRouter({
     {
       path: '/BoardTable',
       name: 'BoardTable',
-      component: () => import('../views/boardTable.vue'),
+      component: () => import('../views/BoardTable.vue'),
     },
     {
       path: '/BoardList',

@@ -43,8 +43,6 @@
   }
 
   getBoardList();
- 
-
 </script>
 <style scoped>
   table * {
