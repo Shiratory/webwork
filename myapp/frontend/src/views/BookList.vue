@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <h2 class="mb-4 text-center">📚 도서 목록</h2>
     <table class="table table-hover">
       <thead>
         <tr>
@@ -13,10 +14,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(book, idx) in bookList" :key="book.bookid" @click="goToDetail(book.bookid)">
+        <tr v-for="(book, idx) in bookList" :key="book.bookid" 
+        @click="goToDetail(book.bookid)">
           <td>{{ book.bookid }}</td>
           <td>{{ book.bookname }}</td>
-          <td>{{ book.bookinfo }}</td>
+          <td>{{ book.content }}</td>
           <td>{{ book.writer }}</td>
           <td>{{ book.company }}</td>
           <td>{{ book.price }}</td>
@@ -41,15 +43,19 @@
     bookList.value = result.data;
   }
 
-  const goToDetail = async(id) =>{
-    router.push({ path: "/bookInfo", query: { id: bookid } });
+  const goToDetail = async(bookid) =>{
+    router.push({ path: "/BookInfo", query: { id: bookid } });
   }
 
   getBookList();
-  goToDetail();
+
 </script>
 <style scoped>
 table * {
   text-align: center;
+}
+h2 {
+  font-weight: bold;
+  color: #333;
 }
 </style>

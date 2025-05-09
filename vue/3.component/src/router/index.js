@@ -9,11 +9,6 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: "/login",
-      name: "login",
-      component: () => import("@/views/LoginView.vue"),
-    },
-    {
       path: "/",
       name: "home",
       component: () => import("@/views/HomeView.vue"),
@@ -48,6 +43,16 @@ const router = createRouter({
       path: "/slot", 
       name: "slot", 
       component: () => import("../views/SlotView.vue"),
+    },
+     { 
+      path: "/vuetify", 
+      name: "vuetify", 
+      component: () => import("../views/vuetify.vue"),
+    },
+    { 
+      path: "/pinia", 
+      name: "pinia", 
+      component: () => import("../views/StoreView.vue"),
     },
   ],
 });
